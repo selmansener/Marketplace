@@ -6,4 +6,33 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Data\DataFiles\SeedData.Development.json" />
+    <None Remove="Data\DataFiles\SeedData.Int.json" />
+    <None Remove="Data\DataFiles\SeedData.Production.json" />
+    <None Remove="Data\DataFiles\SeedData.Staging.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\DataFiles\SeedData.Development.json" />
+    <EmbeddedResource Include="Data\DataFiles\SeedData.Int.json" />
+    <EmbeddedResource Include="Data\DataFiles\SeedData.Production.json" />
+    <EmbeddedResource Include="Data\DataFiles\SeedData.Staging.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="EFCoreAutoMigrator" Version="1.0.5" />
+    <PackageReference Include="Iyzipay" Version="2.1.53" />
+    <PackageReference Include="JsonNet.ContractResolvers" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Marketplace.Data\Marketplace.Data.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Azure.Extensions\Marketplace.Infrastructure.Azure.Extensions.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
