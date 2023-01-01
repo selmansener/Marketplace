@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ClearDatabase.sql" />
     <None Remove="Data\DataFiles\SeedData.Development.json" />
     <None Remove="Data\DataFiles\SeedData.Int.json" />
     <None Remove="Data\DataFiles\SeedData.Production.json" />
@@ -14,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="ClearDatabase.sql" />
     <EmbeddedResource Include="Data\DataFiles\SeedData.Development.json" />
     <EmbeddedResource Include="Data\DataFiles\SeedData.Int.json" />
     <EmbeddedResource Include="Data\DataFiles\SeedData.Production.json" />

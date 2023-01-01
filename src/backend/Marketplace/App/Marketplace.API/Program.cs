@@ -17,6 +17,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Marketplace.Data.Extensions;
 using Modilist.Business.Extensions;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Marketplace.Infrastructure.Azure.Extensions.Configurations;
+using Marketplace.Infrastructure.Shared.Configurations;
 
 const string CorsPolicyName = "Default";
 const string ApiTitle = "ModilistAPI";
@@ -27,10 +30,25 @@ var builder = WebApplication.CreateBuilder(args);
 var appSettings = builder.Configuration.GetSection("AppSettings");
 var config = appSettings.Get<ConfigurationOptions>();
 
+builder.Services.Configure<ConfigurationOptions>(configuration =>
+{
+    configuration.DevelopmentApiKey = config.DevelopmentApiKey;
+    configuration.AllowedOrigins = config.AllowedOrigins;
+    configuration.AzureAdB2COptions = config.AzureAdB2COptions;
+    configuration.ModilistDbConnectionOptions = config.ModilistDbConnectionOptions;
+});
+
+builder.Services.Configure<IyzicoAPIOptions>(builder.Configuration.GetSection("AppSettings:IyzicoAPIOptions"));
+builder.Services.Configure<StorageConnectionStrings>(builder.Configuration.GetSection("AppSettings:StorageConnectionStrings"));
+builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("AppSettings:SendGridOptions"));
+builder.Services.Configure<EventGridClientOptions>(builder.Configuration.GetSection("AppSettings:EventGridClientOptions"));
+
 builder.Services.AddSwaggerGenNewtonsoftSupport();
 builder.Services.AddSwaggerGen(ConfigureSwaggerGenerator);
 
 builder.Services.AddApiVersioning(ConfigureApiVersioning);
+
+builder.Services.AddVersionedApiExplorer(ConfigureApiExplorer);
 
 builder.Services.AddHttpContextAccessor();
 
@@ -224,6 +242,19 @@ void ConfigureApiVersioning(ApiVersioningOptions options)
     options.DefaultApiVersion = new ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
+}
+
+void ConfigureApiExplorer(ApiExplorerOptions options)
+{
+    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+    // note: the specified format code will format the version as "'v'major[.minor][-status]"
+    options.GroupNameFormat = "'v'V";
+
+    // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+    // can also be used to control the format of the API version in route templates
+    options.SubstituteApiVersionInUrl = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
 }
 
 IDictionary<string, string> GetPermissions()
