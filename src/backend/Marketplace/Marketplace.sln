@@ -13,21 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domains", "Domains", "{B5F2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{303EBF07-56D3-49C4-9BF5-5E843631C322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.API", "App\Marketplace.API\Marketplace.API.csproj", "{C2CC4F8B-4E86-4176-BDE8-D55E7DBA343E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.API", "App\Marketplace.API\Marketplace.API.csproj", "{C2CC4F8B-4E86-4176-BDE8-D55E7DBA343E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Business", "Business\Marketplace.Business\Marketplace.Business.csproj", "{DF72EEAB-7C0F-403E-93D5-84B238074332}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Business", "Business\Marketplace.Business\Marketplace.Business.csproj", "{DF72EEAB-7C0F-403E-93D5-84B238074332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Business.Seed", "Business\Marketplace.Business.Seed\Marketplace.Business.Seed.csproj", "{8315D41F-B187-4D76-9294-BBA7545D2176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Business.Seed", "Business\Marketplace.Business.Seed\Marketplace.Business.Seed.csproj", "{8315D41F-B187-4D76-9294-BBA7545D2176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Business.Utils", "Business\Marketplace.Business.Utils\Marketplace.Business.Utils.csproj", "{6C966742-3587-4BCE-8FB5-8444D3EC78E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Business.Utils", "Business\Marketplace.Business.Utils\Marketplace.Business.Utils.csproj", "{6C966742-3587-4BCE-8FB5-8444D3EC78E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Data", "Data\Marketplace.Data\Marketplace.Data.csproj", "{F3230F94-8740-4E9B-802F-D2420BA5FF62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Data", "Data\Marketplace.Data\Marketplace.Data.csproj", "{F3230F94-8740-4E9B-802F-D2420BA5FF62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Domains", "Domains\Marketplace.Domains\Marketplace.Domains.csproj", "{A1F1FA64-38D1-4F41-AE96-4C6AA2D9F0B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Domains", "Domains\Marketplace.Domains\Marketplace.Domains.csproj", "{A1F1FA64-38D1-4F41-AE96-4C6AA2D9F0B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Infrastructure.Shared", "Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj", "{D3E7D0D3-008F-434F-9C89-ABC34F9A9F86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Infrastructure.Shared", "Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj", "{D3E7D0D3-008F-434F-9C89-ABC34F9A9F86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Infrastructure.Azure.Extensions", "Infrastructure\Marketplace.Infrastructure.Azure.Extensions\Marketplace.Infrastructure.Azure.Extensions.csproj", "{3C41DC77-AA34-46FF-AF04-59CCD557164E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marketplace.Infrastructure.Azure.Extensions", "Infrastructure\Marketplace.Infrastructure.Azure.Extensions\Marketplace.Infrastructure.Azure.Extensions.csproj", "{3C41DC77-AA34-46FF-AF04-59CCD557164E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Functions.EventHandlers", "App\Marketplace.Functions.EventHandlers\Marketplace.Functions.EventHandlers.csproj", "{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{3C41DC77-AA34-46FF-AF04-59CCD557164E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C41DC77-AA34-46FF-AF04-59CCD557164E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C41DC77-AA34-46FF-AF04-59CCD557164E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{A1F1FA64-38D1-4F41-AE96-4C6AA2D9F0B5} = {B5F2CF5F-EC4C-4C1A-8969-4F94B9A58750}
 		{D3E7D0D3-008F-434F-9C89-ABC34F9A9F86} = {303EBF07-56D3-49C4-9BF5-5E843631C322}
 		{3C41DC77-AA34-46FF-AF04-59CCD557164E} = {303EBF07-56D3-49C4-9BF5-5E843631C322}
+		{4EBE7CCF-A9D2-4F1C-9B51-98DD9BAAA64D} = {8C4999A8-3209-42FC-A59A-751964F9686D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {166E1828-261F-4547-B5F3-22E755C51F25}

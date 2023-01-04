@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Settings\appsettings.Development.json" />
+    <None Remove="Settings\appsettings.Int.json" />
+    <None Remove="Settings\appsettings.Production.json" />
+    <None Remove="Settings\appsettings.Staging.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Settings\appsettings.Development.json" />
+    <EmbeddedResource Include="Settings\appsettings.Int.json" />
+    <EmbeddedResource Include="Settings\appsettings.Production.json" />
+    <EmbeddedResource Include="Settings\appsettings.Staging.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventGrid" Version="3.2.1" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\Marketplace.Business\Marketplace.Business.csproj" />
+    <ProjectReference Include="..\..\Data\Marketplace.Data\Marketplace.Data.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Azure.Extensions\Marketplace.Infrastructure.Azure.Extensions.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>

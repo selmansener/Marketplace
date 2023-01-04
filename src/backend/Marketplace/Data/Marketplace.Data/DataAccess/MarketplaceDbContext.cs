@@ -14,6 +14,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Marketplace.Infrastructure.Shared.Constants;
 using Marketplace.Infrastructure.Shared.Models;
+using Marketplace.Domains.Models.ProductDomain;
+using Marketplace.Domains.Models.InventoryDomain;
+using Marketplace.Domains.Models.SalesOrderDomain;
 
 namespace Marketplace.Data.DataAccess
 {
@@ -28,6 +31,20 @@ namespace Marketplace.Data.DataAccess
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<InventoryItem>  InventoryItems { get; set; }
+
+        public virtual DbSet<SalesOrder> SalesOrders { get; set; }
+
+        public virtual DbSet<SalesOrderLineItem> SalesOrderLineItems { get; set; }
+
+        public virtual DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
+
+        public virtual DbSet<BillingAddress> BillingAddresses { get; set; }
+
+        public virtual DbSet<Shipment> Shipments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

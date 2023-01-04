@@ -1,13 +1,14 @@
 ﻿
+using Marketplace.Data.DataAccess;
+using Marketplace.Data.Repositories.AccountDomain;
+using Marketplace.Data.Repositories.ProductDomain;
+using Marketplace.Data.Transactions;
+using Marketplace.Infrastructure.Shared.Configurations;
+
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using Marketplace.Data.DataAccess;
-using Marketplace.Data.Repositories.AccountDomain;
-using Marketplace.Data.Transactions;
-using Marketplace.Infrastructure.Shared.Configurations;
 
 namespace Marketplace.Data.Extensions
 {
@@ -42,6 +43,7 @@ namespace Marketplace.Data.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             return services;
         }
