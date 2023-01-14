@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\Marketplace.Business.Utils\Marketplace.Business.Utils.csproj" />
     <ProjectReference Include="..\..\Business\Marketplace.Business\Marketplace.Business.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj" />
   </ItemGroup>

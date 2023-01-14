@@ -3,6 +3,7 @@ import { AppBar, Box, Button, Toolbar } from "@mui/material"
 import React from "react"
 import { NavLink, useNavigate } from "react-router-dom";
 import { config } from "../../config";
+import { SearchBar } from "./SearchBar";
 
 function AuthenticationButton() {
     const { instance: msal } = useMsal();
@@ -45,14 +46,17 @@ export function Header() {
     return <React.Fragment>
         <AppBar position="fixed" color="inherit">
             <Toolbar>
+                <Box>
+                    <NavLink to="/">
+                        <img width={200} src="/originalhorizontallogoslogan.svg" />
+                    </NavLink>
+                </Box>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'flex-start',
                     flexGrow: 1,
                 }}>
-                    <NavLink to="/">
-                        <img width={200} src="/originalhorizontallogoslogan.svg" />
-                    </NavLink>
+                    <SearchBar />
                 </Box>
                 <AuthenticationButton />
             </Toolbar>

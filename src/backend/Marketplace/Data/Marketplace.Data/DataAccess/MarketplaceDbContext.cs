@@ -17,6 +17,7 @@ using Marketplace.Infrastructure.Shared.Models;
 using Marketplace.Domains.Models.ProductDomain;
 using Marketplace.Domains.Models.InventoryDomain;
 using Marketplace.Domains.Models.SalesOrderDomain;
+using Marketplace.Domains.Models.AddressDomain;
 
 namespace Marketplace.Data.DataAccess
 {

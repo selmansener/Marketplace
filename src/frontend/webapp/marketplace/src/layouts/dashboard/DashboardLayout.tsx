@@ -24,18 +24,6 @@ export function DashboardLayout() {
 }
 
 const MainPage = React.lazy(() => import("../../pages/dashboard/main/Main"));
-const SalesOrdersPage = React.lazy(() => import("../../pages/dashboard/salesOrders/SalesOrders"));
-const ProductsPage = React.lazy(() => import("../../pages/dashboard/products/Products"));
-const ProductListPage = React.lazy(() => import("../../pages/dashboard/products/ProductList"));
-const ProductUploadHistoryPage = React.lazy(() => import("../../pages/dashboard/products/UploadHistory"));
-const ProductUploadHistoryDetailsPage = React.lazy(() => import("../../pages/dashboard/products/UploadHistoryDetails"));
-const ReturnsPage = React.lazy(() => import("../../pages/dashboard/returns/Returns"));
-const TenantPage = React.lazy(() => import("../../pages/dashboard/tenant/Tenant"));
-const ProductListGridPage = React.lazy(() => import("../../pages/dashboard/products/components/ProductGrid"));
-const ProductDetailsPage = React.lazy(() => import("../../pages/dashboard/products/ProductDetails"));
-const NewProductPage = React.lazy(() => import("../../pages/dashboard/products/NewProduct"));
-const NewProductUploadPage = React.lazy(() => import("../../pages/dashboard/products/NewUpload"));
-const UpdateProductPage = React.lazy(() => import("../../pages/dashboard/products/UpdateProduct"));
 
 export const dashboardRoutes: RouteConfig = {
     path: "/dashboard",
@@ -46,81 +34,5 @@ export const dashboardRoutes: RouteConfig = {
             path: "",
             element: <MainPage />
         },
-        {
-            path: "sales-orders",
-            element: <SalesOrdersPage />
-        },
-        {
-            path: "products",
-            element: <ProductsPage />,
-            leafNodes: [
-                {
-                    path:"",
-                    element: <ProductListPage />,
-                    leafNodes: [
-                        {
-                            path:"",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"active",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"in-review",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"out-of-stock",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"missing-info",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"rejected",
-                            element: <ProductListGridPage />
-                        },
-                        {
-                            path:"passive",
-                            element: <ProductListGridPage />
-                        }
-                    ]
-                },
-                {
-                    path: "new",
-                    element: <NewProductPage />
-                },
-                {
-                    path: ":productId",
-                    element: <ProductDetailsPage />
-                },
-                {
-                    path: ":productId/update",
-                    element: <UpdateProductPage />
-                },
-                {
-                    path: "new-upload",
-                    element: <NewProductUploadPage />
-                },
-                {
-                    path: "upload-history",
-                    element: <ProductUploadHistoryPage />
-                },
-                {
-                    path: "upload-history/:productExcelUploadId",
-                    element: <ProductUploadHistoryDetailsPage />
-                }
-            ]
-        },
-        {
-            path: "returns",
-            element: <ReturnsPage />
-        },
-        {
-            path: "tenant",
-            element: <TenantPage />
-        }
     ]
 }

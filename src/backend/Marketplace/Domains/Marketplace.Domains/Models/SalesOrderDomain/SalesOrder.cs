@@ -17,9 +17,9 @@ namespace Marketplace.Domains.Models.SalesOrderDomain
 
         public SalesOrderState State { get; private set; }
 
-        public DeliveryAddress? DeliveryAddress { get; private set; }
+        public SalesOrderDeliveryAddress? DeliveryAddress { get; private set; }
 
-        public BillingAddress? BillingAddress { get; private set; }
+        public SalesOrderBillingAddress? BillingAddress { get; private set; }
 
         public Shipment? Shipment { get; private set; }
 
@@ -43,7 +43,7 @@ namespace Marketplace.Domains.Models.SalesOrderDomain
             _lineItems.Add(new SalesOrderLineItem(Id, productId, amount, price, salesPrice));
         }
 
-        public void AssignDeliveryAddress(DeliveryAddress deliveryAddress)
+        public void AssignDeliveryAddress(SalesOrderDeliveryAddress deliveryAddress)
         {
             if (DeliveryAddress != null)
             {
@@ -53,7 +53,7 @@ namespace Marketplace.Domains.Models.SalesOrderDomain
             DeliveryAddress = deliveryAddress;
         }
 
-        public void AssignBillingAddress(BillingAddress billingAddress)
+        public void AssignBillingAddress(SalesOrderBillingAddress billingAddress)
         {
             if (BillingAddress != null)
             {

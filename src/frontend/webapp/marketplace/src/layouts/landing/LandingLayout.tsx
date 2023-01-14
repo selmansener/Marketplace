@@ -28,6 +28,7 @@ const AccountCreatedPage = React.lazy(() => import("../../pages/landing/verifica
 const AccountVerifiedPage = React.lazy(() => import("../../pages/landing/verification/AccountVerified"));
 const AccountVerificationFailedPage = React.lazy(() => import("../../pages/landing/verification/AccountVerificationFailed"));
 const MainPage = React.lazy(() => import("../../pages/landing/main/Main"));
+const SearchPage = React.lazy(() => import("../../pages/shared/Search"));
 
 export const landingRoutes: RouteConfig = {
     path: "/",
@@ -55,5 +56,9 @@ export const landingRoutes: RouteConfig = {
             path: "",
             element: <MainPage />
         },
+        {
+            path: "search",
+            element: <SearchPage />
+        }
     ]
 }

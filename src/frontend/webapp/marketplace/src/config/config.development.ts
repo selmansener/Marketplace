@@ -4,7 +4,18 @@ export interface EnvConfig {
         facebook: string;
         twitter: string;
         linkedIn: string;
-    }
+    },
+    elasticEngineConfig: ElasticSearchEngineConfig;
+}
+
+export interface ElasticSearchEngineConfig {
+    engineName: string;
+    endpointBase: string;
+    searchKey: string;
+    resultFields: string[];
+    sortFields: string[];
+    facets: string[];
+    titleField: string;
 }
 
 export const config: EnvConfig = {
@@ -13,5 +24,43 @@ export const config: EnvConfig = {
         facebook: "https://www.facebook.com/modilistcom",
         twitter: "https://twitter.com/modilistcom",
         linkedIn: "https://www.linkedin.com/company/modilist/"
-    }
+    },
+    elasticEngineConfig: {
+        "engineName": "products-engine",
+        "endpointBase": "https://elastic-modilist-shared-westeu.ent.westeurope.azure.elastic-cloud.com",
+        "searchKey": "search-zna133pfd9fbdd23p244x35n",
+        "resultFields": [
+          "barcode",
+          "brand",
+          "category",
+          "colors",
+          "details.collorType",
+          "details.dressHeight",
+          "details.id",
+          "details.legType",
+          "details.productId",
+          "details.skirtHeight",
+          "details.waistHeight",
+          "gender",
+          "name",
+          "price",
+          "sKU",
+          "id"
+        ],
+        "sortFields": [
+          "price"
+        ],
+        "facets": [
+          "brand",
+          "category",
+          "colors",
+          "details.collorType",
+          "details.dressHeight",
+          "details.legType",
+          "details.skirtHeight",
+          "details.waistHeight",
+          "gender"
+        ],
+        "titleField": "name"
+      }      
 };
