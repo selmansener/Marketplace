@@ -37,6 +37,12 @@ namespace Marketplace.Functions.EventHandlers
                 config.Url = options.EventGridClientOptions.Url;
             });
 
+            builder.Services.Configure<ElasticSearchOptions>(config =>
+            {
+                config.CloudId = options.ElasticSearch.CloudId;
+                config.APIKey = options.ElasticSearch.APIKey;
+            });
+
             builder.Services.AddBlobClientFactory();
             var environment = builder.Services.BuildServiceProvider().GetService<IHostEnvironment>();
 

@@ -16,5 +16,7 @@ namespace Marketplace.Functions.EventHandlers.Configurations
         public string AppStorage { get; set; }
 
         public EventGridClientOptions EventGridClientOptions { get; set; }
+
+        public ElasticSearchOptions ElasticSearch { get; set; }
     }
 }

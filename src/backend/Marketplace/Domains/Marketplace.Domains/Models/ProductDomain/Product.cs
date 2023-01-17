@@ -7,7 +7,9 @@ namespace Marketplace.Domains.Models.ProductDomain
 {
     public class Product : BaseEntity
     {
-        public Product(string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state, int tenantId, int portalProductId)
+        private readonly List<string> _colors = new List<string>();
+
+        public Product(string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state, int tenantId, int portalProductId, Gender gender, string size)
         {
             Name = name;
             SKU = sKU;
@@ -20,6 +22,8 @@ namespace Marketplace.Domains.Models.ProductDomain
             State = state;
             TenantId = tenantId;
             PortalProductId = portalProductId;
+            Gender = gender;
+            Size = size;
         }
 
         public string Name { get; private set; }
@@ -46,6 +50,12 @@ namespace Marketplace.Domains.Models.ProductDomain
 
         public InventoryItem? Inventory { get; private set; }
 
+        public Gender Gender { get; private set; }
+
+        public string Size { get; private set; }
+
+        public IReadOnlyList<string> Colors => _colors;
+
         public void Update(string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state)
         {
             Name = name;
@@ -57,6 +67,16 @@ namespace Marketplace.Domains.Models.ProductDomain
             SalesPrice = salesPrice;
             TaxRatio = taxRatio;
             State = state;
+        }
+
+        public void AddColor(string color)
+        {
+            if (string.IsNullOrEmpty(color))
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
+
+            _colors.Add(color);
         }
     }
 }

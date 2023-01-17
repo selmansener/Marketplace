@@ -1,17 +1,24 @@
 ﻿
+using Azure.Messaging.EventGrid;
+
 using FluentValidation;
 
 using Marketplace.Data.Repositories.ProductDomain;
 using Marketplace.Domains.Models.ProductDomain;
+using Marketplace.Infrastructure.Azure.Extensions.Configurations;
+using Marketplace.Infrastructure.Azure.Extensions.EventGrid;
 using Marketplace.Infrastructure.Shared.Enums;
+using Marketplace.Infrastructure.Shared.Events;
 
 using MediatR;
+
+using Microsoft.Extensions.Options;
 
 namespace Marketplace.Business.CQRS.ProductDomain.Commands
 {
     public class UpsertProduct : IRequest
     {
-        public UpsertProduct(int portalProductId, int tenantId, string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state, int stockAmount)
+        public UpsertProduct(int portalProductId, int tenantId, string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state, int stockAmount, Gender gender, string size, IEnumerable<string>? colors = null)
         {
             PortalProductId = portalProductId;
             TenantId = tenantId;
@@ -25,6 +32,9 @@ namespace Marketplace.Business.CQRS.ProductDomain.Commands
             TaxRatio = taxRatio;
             State = state;
             StockAmount = stockAmount;
+            Gender = gender;
+            Size = size;
+            Colors = colors;
         }
 
         public int PortalProductId { get; private set; }
@@ -45,11 +55,17 @@ namespace Marketplace.Business.CQRS.ProductDomain.Commands
 
         public decimal SalesPrice { get; private set; }
 
+        public Gender Gender { get; private set; }
+
+        public string Size { get; private set; }
+
         public int TaxRatio { get; private set; }
 
         public ProductState State { get; private set; }
 
         public int StockAmount { get; private set; }
+
+        public IEnumerable<string>? Colors { get; private set; }
     }
 
     internal class UpsertProductValidator : AbstractValidator<UpsertProduct>
@@ -66,34 +82,59 @@ namespace Marketplace.Business.CQRS.ProductDomain.Commands
             RuleFor(x => x.TaxRatio).NotEmpty();
             RuleFor(x => x.State).IsInEnum().NotEqual(ProductState.None);
             RuleFor(x => x.StockAmount).NotEmpty().GreaterThan(0);
+            RuleFor(x => x.Gender).IsInEnum();
+            RuleFor(x => x.Size).NotEmpty();
         }
     }
 
     internal class UpsertProductHandler : IRequestHandler<UpsertProduct, Unit>
     {
         private readonly IProductRepository _productRepository;
+        private readonly EventGridPublisherClient _eventGridPublisherClient;
 
-        public UpsertProductHandler(IProductRepository productRepository)
+        public UpsertProductHandler(
+            IProductRepository productRepository,
+            IEventGridPublisherClientFactory eventGridPublisherClientFactory,
+            IOptions<EventGridClientOptions> eventGridOptions)
         {
             _productRepository = productRepository;
+            _eventGridPublisherClient = eventGridPublisherClientFactory.GetClient(eventGridOptions.Value);
         }
 
         public async Task<Unit> Handle(UpsertProduct request, CancellationToken cancellationToken)
         {
-            var existingProduct = await _productRepository.GetByPortalIdAsync(request.TenantId, request.PortalProductId, cancellationToken);
+            var product = await _productRepository.GetByPortalIdAsync(request.TenantId, request.PortalProductId, cancellationToken);
 
-            if (existingProduct != null)
+            if (product != null)
             {
-                existingProduct.Update(request.Name, request.SKU, request.Barcode, request.Brand, request.Category, request.Price, request.SalesPrice, request.TaxRatio, request.State);
+                product.Update(request.Name, request.SKU, request.Barcode, request.Brand, request.Category, request.Price, request.SalesPrice, request.TaxRatio, request.State);
 
-                await _productRepository.UpdateAsync(existingProduct, cancellationToken);
+                await _productRepository.UpdateAsync(product, cancellationToken);
             }
             else
             {
-                var product = new Product(request.Name, request.SKU, request.Barcode, request.Brand, request.Category, request.Price, request.SalesPrice, request.TaxRatio, request.State, request.TenantId, request.PortalProductId);
+                product = new Product(request.Name, request.SKU, request.Barcode, request.Brand, request.Category, request.Price, request.SalesPrice, request.TaxRatio, request.State, request.TenantId, request.PortalProductId, request.Gender, request.Size);
+
+                if (request.Colors != null)
+                {
+                    foreach (var color in request.Colors)
+                    {
+                        product.AddColor(color);
+                    }
+                }
 
                 await _productRepository.AddAsync(product, cancellationToken);
             }
+
+            var productDataChanged = new ProductDataChanged(EventPublishers.WebAPI, PublisherType.System, product.Id);
+
+            var rawProductDataUploadedEvent = new EventGridEvent(
+                nameof(ProductDataChanged),
+                nameof(ProductDataChanged),
+                productDataChanged.Version,
+                productDataChanged);
+
+            await _eventGridPublisherClient.SendEventAsync(rawProductDataUploadedEvent, cancellationToken);
 
             return Unit.Value;
         }

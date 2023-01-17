@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 using Marketplace.Infrastructure.Shared.Enums;
 
 namespace Marketplace.Functions.EventHandlers.Events
@@ -28,5 +30,11 @@ namespace Marketplace.Functions.EventHandlers.Events
         public ProductState State { get; set; }
 
         public int StockAmount { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public string Size { get; set; }
+
+        public IEnumerable<string>? Colors { get; set; }
     }
 }

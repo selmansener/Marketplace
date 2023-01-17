@@ -45,7 +45,10 @@ namespace Marketplace.Functions.EventHandlers.Handlers
                     productVerified.SalesPrice,
                     productVerified.TaxRatio,
                     productVerified.State,
-                    productVerified.StockAmount), cancellationToken);
+                    productVerified.StockAmount,
+                    productVerified.Gender,
+                    productVerified.Size,
+                    productVerified.Colors), cancellationToken);
             }
             catch (Exception ex)
             {
