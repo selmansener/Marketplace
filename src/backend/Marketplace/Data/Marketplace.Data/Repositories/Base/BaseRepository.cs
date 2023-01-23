@@ -22,6 +22,7 @@ namespace Marketplace.Data.Repositories.Base
         Task<int> RemoveRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveChanges = false);
         Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken, bool saveChanges = false);
         Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveChanges = false);
+        Task<int> SoftDelete(TEntity entity, CancellationToken cancellationToken, bool saveChanges = false);
     }
 
     internal abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
@@ -160,6 +161,20 @@ namespace Marketplace.Data.Repositories.Base
             {
                 _baseDb.Database.BeginTransactionAsync(IsolationLevel.RepeatableRead, cancellationToken);
             }
+        }
+
+        public async Task<int> SoftDelete(TEntity entity, CancellationToken cancellationToken, bool saveChanges = false)
+        {
+            int resultCount = 0;
+            entity.Delete();
+            _baseDb.Entry(entity).State = EntityState.Modified;
+
+            if (saveChanges)
+            {
+                resultCount = await _baseDb.SaveChangesAsync(cancellationToken);
+            }
+
+            return resultCount;
         }
     }
 }

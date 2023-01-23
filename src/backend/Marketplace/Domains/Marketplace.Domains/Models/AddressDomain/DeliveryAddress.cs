@@ -15,8 +15,9 @@ namespace Marketplace.Domains.Models.AddressDomain
     {
         protected DeliveryAddress() { }
 
-        public DeliveryAddress(int accountId, string fullName, string phone, string? email, string city, string district, string zipCode, string fullAddress)
+        public DeliveryAddress(Guid accountId, string name, string fullName, string phone, string? email, string city, string district, string zipCode, string fullAddress)
         {
+            Name = name;
             AccountId = accountId;
             FullName = fullName;
             Phone = phone;
@@ -24,9 +25,11 @@ namespace Marketplace.Domains.Models.AddressDomain
             Details = new Address(city, district, "Turkey", zipCode, fullAddress);
         }
 
-        public int AccountId { get; private set; }
+        public Guid AccountId { get; private set; }
 
         public Account Account { get; private set; }
+
+        public string Name { get; private set; }
 
         public string FullName { get; private set; }
 
@@ -35,5 +38,14 @@ namespace Marketplace.Domains.Models.AddressDomain
         public string? Email { get; private set; }
 
         public Address Details { get; private set; }
+
+        public void Update(string name, string fullName, string phone, string? email, string city, string district, string zipCode, string fullAddress)
+        {
+            Name = name;
+            FullName = fullName;
+            Phone = phone;
+            Email = email;
+            Details = Details.Update(city, district, "Turkey", zipCode, fullAddress);
+        }
     }
 }

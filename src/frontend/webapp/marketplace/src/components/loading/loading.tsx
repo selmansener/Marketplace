@@ -7,6 +7,7 @@ export default function Loading() {
         alignItems: "center",
         alignContent: "center",
         flexGrow: 1,
+        minHeight: "680px"
     }}>
         <CircularProgress />
     </Box>

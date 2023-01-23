@@ -20,6 +20,9 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Marketplace.Infrastructure.Azure.Extensions.Configurations;
 using Marketplace.Infrastructure.Shared.Configurations;
+using Marketplace.Infrastructure.Azure.Extensions;
+using Marketplace.API.Middlewares;
+using Marketplace.Business.Utils.Extensions;
 
 const string CorsPolicyName = "Default";
 const string ApiTitle = "ModilistAPI";
@@ -50,7 +53,17 @@ builder.Services.AddApiVersioning(ConfigureApiVersioning);
 
 builder.Services.AddVersionedApiExplorer(ConfigureApiExplorer);
 
+builder.Services.AddBusinessUtils();
+
+builder.Services.AddBlobClientFactory();
+
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddTransactionManager();
+
+builder.Services.AddLoggingBehavior();
+builder.Services.AddValidationBehavior();
+builder.Services.AddTransactionBehavior();
 
 var mvcBuilder = builder.Services.AddMvc(ConfigureMvc)
            .AddNewtonsoftJson(ConfigureNewtonsoftJson)
@@ -89,8 +102,12 @@ builder.Services.AddSeedServices(builder.Environment.EnvironmentName);
 
 var app = builder.Build();
 
+app.UseCors(CorsPolicyName);
+
 app.UseSwagger();
 app.UseSwaggerUI(ConfigureSwaggerUI);
+
+app.UseExceptionHandlerMiddleware();
 
 app.UseRouting();
 

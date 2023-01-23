@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { store } from './store/store';
@@ -120,48 +119,6 @@ const mdTheme = createTheme({
     },
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        ::-webkit-scrollbar {
-          width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-          box-shadow: inset 0 0 5px #968DB3;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: #2F2244;
-        },
-
-        & .MuiLink-root {
-          text-decoration: none;
-          color: #BCBC86;
-        }
-
-        a {
-          text-decoration: none;
-        }
-
-        // a.active[aria-current='page'] {
-        //   & .MuiListItemButton-root {
-        //     background-color: #2F2244
-        //   }
-
-        //   & .MuiListItemButton-root:active {
-        //     background-color: #2F2244
-        //   }
-
-        //   & .MuiTypography-root, & .MuiSvgIcon-root {
-        //     color: #fff
-        //   }
-
-        //   & .MuiButton-text {
-        //     text-decoration: underline;
-        //   }
-        // }
-      `
-    },
     MuiLink: {
       styleOverrides: {
         root: {
@@ -172,6 +129,7 @@ const mdTheme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
+
         contained: {
           border: 1,
           borderColor: '#2F2244',
@@ -212,19 +170,19 @@ function App() {
   return (
     <div className="App">
       <CssBaseline enableColorScheme />
-      <Provider store={store}>
-        <MsalProvider instance={msal}>
-          <Authentication />
-          <ThemeProvider theme={theme} >
+      <ThemeProvider theme={theme} >
+        <Provider store={store}>
+          <MsalProvider instance={msal}>
+            <Authentication />
             <AuthenticatedTemplate>
               <Router routes={routes} isPublic={false} currentAccountRole="user" environment={config.environment} />
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
               <Router routes={routes} isPublic={true} currentAccountRole="user" environment={config.environment} />
             </UnauthenticatedTemplate>
-          </ThemeProvider>
-        </MsalProvider>
-      </Provider>
+          </MsalProvider>
+        </Provider>
+      </ThemeProvider>
     </div>
   );
 }

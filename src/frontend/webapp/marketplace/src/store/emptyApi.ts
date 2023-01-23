@@ -36,6 +36,8 @@ export const emptySplitApi = createApi({
 
             return headers;
         },
+        cache: "no-cache",
     }),
+    refetchOnMountOrArgChange: true,
     endpoints: () => ({}),
 })

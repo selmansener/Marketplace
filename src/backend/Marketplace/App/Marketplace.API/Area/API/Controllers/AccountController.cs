@@ -1,4 +1,5 @@
 ﻿using Marketplace.API.Configurations;
+using Marketplace.Business.CQRS.AccountDomain.DTOs;
 using Marketplace.Business.CQRS.AccountDomain.Queries;
 using Marketplace.Infrastructure.Shared.Extensions;
 

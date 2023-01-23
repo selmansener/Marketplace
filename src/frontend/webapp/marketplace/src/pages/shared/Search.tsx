@@ -126,10 +126,6 @@ export default function Search() {
                                     }
                                     bodyContent={
                                         <Results
-                                            // titleField={getConfig().titleField}
-                                            // urlField={getConfig().urlField}
-                                            // thumbnailField={getConfig().thumbnailField}
-                                            // shouldTrackClickThrough={true}
                                             view={CustomResultsView}
                                             resultView={CustomResultView}
                                         />

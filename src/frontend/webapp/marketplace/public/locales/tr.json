@@ -1,4 +1,125 @@
 {
+    "Footer": {
+        "FollowUs": "Bizi takip edin.",
+        "Links": {
+            "AboutUs": "Hakkımızda",
+            "FAQ": "Sıkça Sorulan Sorular",
+            "Partnership": "İş Ortaklığı Formu",
+            "OpenPositions": "Kariyer",
+            "DeveloperAPI": "Developer API",
+            "KVKK": "Kişisel Verilerin Korunması",
+            "OnlineSalesAgreement": "Mesafeli Satış Sözleşmesi",
+            "PrivacyAndCookiePolicies": "Gizlilik ve Çerez Politikası",
+            "UsageAgreement": "Kullanım Koşulları",
+            "Contact": "İletişim Formu"
+        }
+    },
+    "MyAccountMenu": {
+        "Orders": "Siparişlerim",
+        "MyAccount": "Hesabım Bilgilerim",
+        "Addresses": "Kayıtlı Adreslerim",
+        "PaymentMethods": "Kayıtlı Kartlarım"
+    },
+    "Pages": {
+        "Main": {
+            "Featured": "Öne Çıkanlar",
+            "TopSellers": "En Çok Satan Ürünler",
+            "Discounts": "İndirimdekiler"
+        },
+        "Account": {
+            "Orders": "Siparişlerim",
+            "Title": "Hesabım",
+            "ResetPassword": "Şifre Sıfırla",
+            "MyAccount": "Hesabım Bilgilerim",
+            "Addresses": "Kayıtlı Adreslerim",
+            "PaymentMethods": "Kayıtlı Kartlarım",
+            "Logout": "Çıkış Yap",
+            "AddressesPage": {
+                "Delivery": "Teslimat Adreslerim",
+                "Billing": "Fatura Adreslerim"
+            }
+        },
+        "Addresses": {
+            "DeleteAddressTitle": "Kalıcı olarak sil?",
+            "DeleteAddressConfirmation": "<strong>\"{{addressName}}\"</strong> adresini silmek istediğinize emin misiniz?",
+            "AddressLineItem": {
+                "AddNew": "Yeni Address Ekle",
+                "AddressName": "Adres Adı: ",
+                "City": "İl: ",
+                "District": "İlçe: ",
+                "FullAddress": "Adres: ",
+                "Default": "Varsayılan Adres",
+                "SetAsDefault": "Varsayılan Olarak Ata",
+                "BillingType": "Fatura Türü: ",
+                "BillingTypes": {
+                    "Individual": "Bireysel Fatura",
+                    "Corporate": "Kurumsal Fatura"
+                }
+            }
+        },
+        "NewAddress": {
+            "AddressName": "Adres Adı",
+            "SetAsDefault": "Varsayılan Olarak Ata"
+        },
+        "UpdateBillingAddress": {
+            "Type": "FATURA ADRESİ",
+            "BillingTypes": {
+                "Individual": "Bireysel Fatura",
+                "Corporate": "Kurumsal Fatura"
+            },
+            "CorporateName": "Kurum Adı",
+            "BillingType": "Fatura Türü",
+            "Name": "Adres Adı",
+            "FullName": "Ad Soyad",
+            "Email": "E-Posta",
+            "Phone": "Telefon Numarası",
+            "ZipCode": "Posta Kodu",
+            "FullAddress": "Tam Adres: "
+        },
+        "UpdateDeliveryAddress": {
+            "Type": "TESLİMAT ADRESİ",
+            "Name": "Adres Adı",
+            "FullName": "Ad Soyad",
+            "Email": "E-Posta",
+            "Phone": "Telefon Numarası",
+            "ZipCode": "Posta Kodu",
+            "FullAddress": "Tam Adres: "
+        },
+        "CreateDeliveryAddress": {
+            "New": "Yeni Adres",
+            "Type": "TESLİMAT ADRESİ",
+            "Name": "Adres Adı",
+            "FullName": "Ad Soyad",
+            "Email": "E-Posta",
+            "Phone": "Telefon Numarası",
+            "ZipCode": "Posta Kodu",
+            "FullAddress": "Tam Adres: "
+        },
+        "CreateBillingAddress": {
+            "New": "Yeni Adres",
+            "Type": "FATURA ADRESİ",
+            "BillingTypes": {
+                "Individual": "Bireysel Fatura",
+                "Corporate": "Kurumsal Fatura"
+            },
+            "CorporateName": "Kurum Adı",
+            "BillingType": "Fatura Türü",
+            "Name": "Adres Adı",
+            "FullName": "Ad Soyad",
+            "Email": "E-Posta",
+            "Phone": "Telefon Numarası",
+            "ZipCode": "Posta Kodu",
+            "FullAddress": "Tam Adres: "
+        },
+        "NotFound": {
+            "Description1": "Üzgünüz, aradığınız sayfayı",
+            "Description2": "bulamıyoruz ya da",
+            "Description3": "kaybettik.",
+            "ReturnToHome": "Ana sayfa",
+            "ReturnToPreviousPage": "Geri",
+            "Error": "Hata :("
+        }
+    },
     "SearchBarPlaceHolder": "Aradığınız ürün, kategori veya markayı yazınız",
     "FormValidation": {
         "RequiredField": "*Gerekli Alan",
@@ -13,6 +134,12 @@
         "InvalidIdNumber": "Geçersiz TC Kimlik No"
     },
     "Generic": {
+        "MyBasket": "Sepetim",
+        "Auth": {
+            "MyAccount": "Hesabım",
+            "SignIn": "Giriş Yap",
+            "Logout": "Çıkış Yap"
+        },
         "Forms": {
             "Other": "Diğer",
             "Message": "Mesajınız",
@@ -28,10 +155,12 @@
             "CareersApply": "Başvur",
             "SelectFile": "Dosya Seç",
             "FilesSelected": "{{count}} dosya seçildi.",
-            "Delete": "Kaldır",
+            "Delete": "Sil",
             "CharactersLeft": "karakter kaldı",
             "Add": "Ekle",
-            "UnexpectedError": "Beklenmedik bir hatayla karşılaştık."
+            "UnexpectedError": "Beklenmedik bir hatayla karşılaştık.",
+            "Approve": "Onayla",
+            "Cancel": "İptal"
         },
         "PersonalInfo": {
             "Address": "Adres",

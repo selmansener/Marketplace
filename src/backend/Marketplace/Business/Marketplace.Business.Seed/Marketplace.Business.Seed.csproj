@@ -35,6 +35,7 @@
     <ProjectReference Include="..\..\Data\Marketplace.Data\Marketplace.Data.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Azure.Extensions\Marketplace.Infrastructure.Azure.Extensions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Marketplace.Infrastructure.Shared\Marketplace.Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\Marketplace.Business.Utils\Marketplace.Business.Utils.csproj" />
   </ItemGroup>
 
 </Project>
