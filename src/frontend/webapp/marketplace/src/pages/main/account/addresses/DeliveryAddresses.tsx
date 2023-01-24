@@ -51,9 +51,9 @@ export default function DeliveryAddresses() {
     }
 
     return <Grid container spacing={2}>
-        {deliverAddresses?.map(address => {
+        {deliverAddresses?.map((address, i) => {
             return (
-                <Grid key={address.name} item xs={12} md={6} xl={4}>
+                <Grid key={i} item xs={12} md={6} xl={4}>
                     <AddressListItem
                         id={address.id}
                         name={address.name}

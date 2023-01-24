@@ -160,6 +160,45 @@ const injectedRtkApi = api.injectEndpoints({
         headers: { "X-ApiKey": queryArg["X-ApiKey"] },
       }),
     }),
+    getApiV1PaymentMethodGetAll: build.query<
+      GetApiV1PaymentMethodGetAllApiResponse,
+      GetApiV1PaymentMethodGetAllApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/v1/PaymentMethod/GetAll`,
+        params: { "api-version": queryArg["api-version"] },
+      }),
+    }),
+    getApiV1PaymentMethodByPaymentMethodId: build.query<
+      GetApiV1PaymentMethodByPaymentMethodIdApiResponse,
+      GetApiV1PaymentMethodByPaymentMethodIdApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/v1/PaymentMethod/${queryArg.paymentMethodId}`,
+        params: { "api-version": queryArg["api-version"] },
+      }),
+    }),
+    postApiV1PaymentMethodCreate: build.mutation<
+      PostApiV1PaymentMethodCreateApiResponse,
+      PostApiV1PaymentMethodCreateApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/v1/PaymentMethod/Create`,
+        method: "POST",
+        body: queryArg.createPaymentMethod,
+        params: { "api-version": queryArg["api-version"] },
+      }),
+    }),
+    postApiV1PaymentMethodByPaymentMethodIdDelete: build.mutation<
+      PostApiV1PaymentMethodByPaymentMethodIdDeleteApiResponse,
+      PostApiV1PaymentMethodByPaymentMethodIdDeleteApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/v1/PaymentMethod/${queryArg.paymentMethodId}/Delete`,
+        method: "POST",
+        params: { "api-version": queryArg["api-version"] },
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -252,6 +291,27 @@ export type GetDevV1GetClientIpApiResponse = unknown;
 export type GetDevV1GetClientIpApiArg = {
   /** X-ApiKey */
   "X-ApiKey": string;
+};
+export type GetApiV1PaymentMethodGetAllApiResponse =
+  /** status 200 Success */ PaymentMethodDtoiEnumerableResponseModel;
+export type GetApiV1PaymentMethodGetAllApiArg = {
+  "api-version"?: string;
+};
+export type GetApiV1PaymentMethodByPaymentMethodIdApiResponse =
+  /** status 200 Success */ PaymentMethodDtoResponseModel;
+export type GetApiV1PaymentMethodByPaymentMethodIdApiArg = {
+  paymentMethodId: number;
+  "api-version"?: string;
+};
+export type PostApiV1PaymentMethodCreateApiResponse = unknown;
+export type PostApiV1PaymentMethodCreateApiArg = {
+  "api-version"?: string;
+  createPaymentMethod: CreatePaymentMethod;
+};
+export type PostApiV1PaymentMethodByPaymentMethodIdDeleteApiResponse = unknown;
+export type PostApiV1PaymentMethodByPaymentMethodIdDeleteApiArg = {
+  paymentMethodId: number;
+  "api-version"?: string;
 };
 export type City = {
   name?: string;
@@ -380,13 +440,45 @@ export type UpdateDeliveryAddress = {
   fullAddress?: string;
 };
 export type SeedServiceType =
-  | "UsersCreatedEmpty"
-  | "UsersCreated"
   | "Users"
-  | "StylePreferences"
   | "Product"
   | "SalesOrders"
-  | "Addresses";
+  | "Addresses"
+  | "PaymentMethods";
+export type PaymentMethodDto = {
+  id?: number;
+  cardAssociation?: string;
+  cardFamily?: string;
+  cardBankName?: string;
+  cardBankCode?: number | null;
+  binNumber?: string;
+  cardName?: string;
+};
+export type PaymentMethodDtoiEnumerableResponseModel = {
+  statusCode?: number;
+  data?: PaymentMethodDto[] | null;
+  message?: string | null;
+  errorType?: string | null;
+  errors?: {
+    [key: string]: string[];
+  } | null;
+};
+export type PaymentMethodDtoResponseModel = {
+  statusCode?: number;
+  data?: PaymentMethodDto;
+  message?: string | null;
+  errorType?: string | null;
+  errors?: {
+    [key: string]: string[];
+  } | null;
+};
+export type CreatePaymentMethod = {
+  cardName?: string;
+  cardNumber?: string;
+  cardHolderName?: string;
+  expireMonth?: string;
+  expireYear?: string;
+};
 export const {
   useGetApiV1AccountGetQuery,
   useGetApiV1AddressGetCitiesQuery,
@@ -404,4 +496,8 @@ export const {
   usePostApiV1DeliveryAddressByDeliveryAddressIdDeleteMutation,
   usePostDevV1SeedMutation,
   useGetDevV1GetClientIpQuery,
+  useGetApiV1PaymentMethodGetAllQuery,
+  useGetApiV1PaymentMethodByPaymentMethodIdQuery,
+  usePostApiV1PaymentMethodCreateMutation,
+  usePostApiV1PaymentMethodByPaymentMethodIdDeleteMutation,
 } = injectedRtkApi;

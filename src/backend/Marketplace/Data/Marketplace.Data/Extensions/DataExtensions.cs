@@ -2,6 +2,7 @@
 using Marketplace.Data.DataAccess;
 using Marketplace.Data.Repositories.AccountDomain;
 using Marketplace.Data.Repositories.AddressDomain;
+using Marketplace.Data.Repositories.FinanceDomain;
 using Marketplace.Data.Repositories.ProductDomain;
 using Marketplace.Data.Transactions;
 using Marketplace.Infrastructure.Shared.Configurations;
@@ -47,6 +48,7 @@ namespace Marketplace.Data.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBillingAddressRepository, BillingAddressRepository>();
             services.AddScoped<IDeliveryAddressRepository, DeliveryAddressRepository>();
+            services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
 
             return services;
         }

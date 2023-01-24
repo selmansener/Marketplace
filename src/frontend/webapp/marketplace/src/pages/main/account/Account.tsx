@@ -45,8 +45,11 @@ export default function Account() {
     ]
 
     useEffect(() => {
-        if (location.pathname === "/account/addresses/delivery" || location.pathname === "/account/addresses/billing") {
+        if (location.pathname.indexOf("/account/addresses/delivery") > -1 || location.pathname.indexOf("/account/addresses/billing") > -1) {
             setAccordionExpanded(true);
+        }
+        else {
+            setAccordionExpanded(false);
         }
     }, [location])
 
@@ -59,7 +62,7 @@ export default function Account() {
             }}>
                 <MenuList>
                     {menuItems.map(item => {
-                        return <MenuItem sx={location.pathname === item.path ? {
+                        return <MenuItem sx={location.pathname.indexOf(item.path) > -1 ? {
                             backgroundColor: theme.palette.primary.main,
                             color: theme.palette.primary.contrastText,
                             "&.MuiMenuItem-root:hover": {
@@ -83,7 +86,7 @@ export default function Account() {
                             </AccordionSummary>
                             <AccordionDetails sx={{ p: 0 }}>
                                 <MenuList>
-                                    <MenuItem sx={location.pathname === "/account/addresses/delivery" ? {
+                                    <MenuItem sx={location.pathname.indexOf("/account/addresses/delivery") > -1 ? {
                                         pl: 4,
                                         backgroundColor: theme.palette.primary.main,
                                         color: theme.palette.primary.contrastText,
@@ -93,7 +96,7 @@ export default function Account() {
                                     } : { pl: 4 }} onClick={() => navigate("/account/addresses/delivery")}>
                                         {t("Pages.Account.AddressesPage.Delivery")}
                                     </MenuItem>
-                                    <MenuItem sx={location.pathname === "/account/addresses/billing" ? {
+                                    <MenuItem sx={location.pathname.indexOf("/account/addresses/billing") > -1 ? {
                                         pl: 4,
                                         backgroundColor: theme.palette.primary.main,
                                         color: theme.palette.primary.contrastText,

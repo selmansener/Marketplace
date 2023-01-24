@@ -111,6 +111,36 @@
             "ZipCode": "Posta Kodu",
             "FullAddress": "Tam Adres: "
         },
+        "PaymentMethods": {
+            "New": "Yeni Kart",
+            "DeletePaymentMethodTitle": "Kalıcı olarak sil?",
+            "DeletePaymentMethodConfirmation": "<strong>\"{{cardName}}\"</strong> ödeme yöntemini silmek istediğinize emin misiniz?",
+            "PaymentMethodListItem": {
+                "AddNew": "Yeni Kart Ekle",
+                "BankName": "Banka: ",
+                "CardNumber": "Kart Numarası: ",
+                "SetAsDefault": "Varsayılan Olarak Ata",
+                "Default": "Varsayılan Kart",
+                "DeleteWarning": "En az bir ödeme yöntemi bulunmak zorunda.",
+                "CardName": "Kart Adı: "
+            }
+        },
+        "NewPaymentMethod": {
+            "CardHolderName": "Kart Üzerindeki İsim",
+            "CardNumber": "Kart Numarası",
+            "ExpireMonth": "Son Kullanma Tarihi (Ay)",
+            "ExpireYear": "Son Kullanma Tarihi (Yıl)",
+            "CardName": "Kart İsmi",
+            "CardNumberValidation": "Lütfen geçerli bir kart numarası giriniz.",
+            "MonthTwoDigits": "Lütfen iki haneli olarak giriniz",
+            "MonthValidation": "Lütfen geçerli bir ay giriniz",
+            "YearTwoDigits": "Lütfen yılı iki haneli olarak giriniz",
+            "YearValidation": "Lütfen geçerli bir yıl giriniz",
+            "CvcValidation": "Lütfen geçerli bir CVC giriniz",
+            "CardHolderNameValidation": "Lütfen sayı kullanmadan geçerli bir isim giriniz",
+            "CardNameValidation": "Bu kart ismine sahip başka bir kart bulunmakta.",
+            "SetAsDefault": "Varsayılan Olarak Ata"
+        },
         "NotFound": {
             "Description1": "Üzgünüz, aradığınız sayfayı",
             "Description2": "bulamıyoruz ya da",

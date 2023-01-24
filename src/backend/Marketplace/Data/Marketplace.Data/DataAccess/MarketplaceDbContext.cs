@@ -18,6 +18,7 @@ using Marketplace.Domains.Models.ProductDomain;
 using Marketplace.Domains.Models.InventoryDomain;
 using Marketplace.Domains.Models.SalesOrderDomain;
 using Marketplace.Domains.Models.AddressDomain;
+using Marketplace.Domains.Models.FinanceDomain;
 
 namespace Marketplace.Data.DataAccess
 {
@@ -46,6 +47,8 @@ namespace Marketplace.Data.DataAccess
         public virtual DbSet<BillingAddress> BillingAddresses { get; set; }
 
         public virtual DbSet<Shipment> Shipments { get; set; }
+
+        public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

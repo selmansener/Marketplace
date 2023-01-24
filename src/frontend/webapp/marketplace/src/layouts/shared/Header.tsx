@@ -242,7 +242,7 @@ export function Header() {
                             Spor & Outdoor
                         </MenuButton>
                     </Toolbar>
-                    <Box
+                    {/* <Box
                         onMouseOver={() => setSubmenuState(true)}
                         onMouseLeave={() => closeSubmenu()}
                         display={submenuState ? "block" : "none"}
@@ -264,7 +264,7 @@ export function Header() {
                                 </Grid>
                             })}
                         </Grid>
-                    </Box>
+                    </Box> */}
                 </Container>
             </Box>
         </AppBar>

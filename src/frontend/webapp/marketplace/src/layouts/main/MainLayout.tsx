@@ -45,6 +45,7 @@ const UpdateBillingAddressPage = React.lazy(() => import("../../pages/main/accou
 const UpdateDeliveryAddressPage = React.lazy(() => import("../../pages/main/account/addresses/UpdateDeliveryAddressForm"));
 const CreateDeliveryAddressPage = React.lazy(() => import("../../pages/main/account/addresses/CreateDeliveryAddressForm"));
 const CreateBillingAddressPage = React.lazy(() => import("../../pages/main/account/addresses/CreateBillingAddressForm"));
+const CreatePaymentMethodPage = React.lazy(() => import("../../pages/main/account/payment-methods/CreatePaymentMethodForm"));
 
 export const mainRoutes: RouteConfig = {
     path: "/",
@@ -114,6 +115,10 @@ export const mainRoutes: RouteConfig = {
                 {
                     path: "payment-methods",
                     element: <PaymentMethodsPage />
+                },
+                {
+                    path: "payment-methods/new",
+                    element: <CreatePaymentMethodPage />
                 },
                 {
                     path: "settings",
