@@ -50,6 +50,8 @@ namespace Marketplace.Data.DataAccess
 
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
 
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var entityTypes = GetEntityTypes(builder).ToList();

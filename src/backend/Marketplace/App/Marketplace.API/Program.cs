@@ -23,6 +23,7 @@ using Marketplace.Infrastructure.Shared.Configurations;
 using Marketplace.Infrastructure.Azure.Extensions;
 using Marketplace.API.Middlewares;
 using Marketplace.Business.Utils.Extensions;
+using Mapster;
 
 const string CorsPolicyName = "Default";
 const string ApiTitle = "ModilistAPI";
@@ -45,6 +46,9 @@ builder.Services.Configure<IyzicoAPIOptions>(builder.Configuration.GetSection("A
 builder.Services.Configure<StorageConnectionStrings>(builder.Configuration.GetSection("AppSettings:StorageConnectionStrings"));
 builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("AppSettings:SendGridOptions"));
 builder.Services.Configure<EventGridClientOptions>(builder.Configuration.GetSection("AppSettings:EventGridClientOptions"));
+
+TypeAdapterConfig.GlobalSettings.Scan(typeof(Program).Assembly, typeof(BusinessExtensions).Assembly);
+TypeAdapterConfig.GlobalSettings.Default.IgnoreNullValues(true);
 
 builder.Services.AddSwaggerGenNewtonsoftSupport();
 builder.Services.AddSwaggerGen(ConfigureSwaggerGenerator);

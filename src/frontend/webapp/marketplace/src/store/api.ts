@@ -199,6 +199,15 @@ const injectedRtkApi = api.injectEndpoints({
         params: { "api-version": queryArg["api-version"] },
       }),
     }),
+    getApiV1ProductByProductId: build.query<
+      GetApiV1ProductByProductIdApiResponse,
+      GetApiV1ProductByProductIdApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/v1/Product/${queryArg.productId}`,
+        params: { "api-version": queryArg["api-version"] },
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -311,6 +320,12 @@ export type PostApiV1PaymentMethodCreateApiArg = {
 export type PostApiV1PaymentMethodByPaymentMethodIdDeleteApiResponse = unknown;
 export type PostApiV1PaymentMethodByPaymentMethodIdDeleteApiArg = {
   paymentMethodId: number;
+  "api-version"?: string;
+};
+export type GetApiV1ProductByProductIdApiResponse =
+  /** status 200 Success */ ProductDetailsDtoResponseModel;
+export type GetApiV1ProductByProductIdApiArg = {
+  productId: number;
   "api-version"?: string;
 };
 export type City = {
@@ -444,7 +459,8 @@ export type SeedServiceType =
   | "Product"
   | "SalesOrders"
   | "Addresses"
-  | "PaymentMethods";
+  | "PaymentMethods"
+  | "Products";
 export type PaymentMethodDto = {
   id?: number;
   cardAssociation?: string;
@@ -479,6 +495,27 @@ export type CreatePaymentMethod = {
   expireMonth?: string;
   expireYear?: string;
 };
+export type Gender = "Unisex" | "Male" | "Female";
+export type ProductDetailsDto = {
+  id?: number;
+  name?: string;
+  sku?: string;
+  brand?: string;
+  category?: string;
+  salesPrice?: number;
+  gender?: Gender;
+  amount?: number;
+  images?: string[];
+};
+export type ProductDetailsDtoResponseModel = {
+  statusCode?: number;
+  data?: ProductDetailsDto;
+  message?: string | null;
+  errorType?: string | null;
+  errors?: {
+    [key: string]: string[];
+  } | null;
+};
 export const {
   useGetApiV1AccountGetQuery,
   useGetApiV1AddressGetCitiesQuery,
@@ -500,4 +537,5 @@ export const {
   useGetApiV1PaymentMethodByPaymentMethodIdQuery,
   usePostApiV1PaymentMethodCreateMutation,
   usePostApiV1PaymentMethodByPaymentMethodIdDeleteMutation,
+  useGetApiV1ProductByProductIdQuery,
 } = injectedRtkApi;

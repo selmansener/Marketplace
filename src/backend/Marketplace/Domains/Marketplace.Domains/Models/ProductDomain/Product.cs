@@ -8,6 +8,7 @@ namespace Marketplace.Domains.Models.ProductDomain
     public class Product : BaseEntity
     {
         private readonly List<string> _colors = new List<string>();
+        private readonly List<ProductImage> _images = new List<ProductImage>();
 
         public Product(string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state, int tenantId, int portalProductId, Gender gender, string size)
         {
@@ -56,6 +57,8 @@ namespace Marketplace.Domains.Models.ProductDomain
 
         public IReadOnlyList<string> Colors => _colors;
 
+        public IReadOnlyList<ProductImage> Images => _images;
+
         public void Update(string name, string sKU, string barcode, string brand, string category, decimal price, decimal salesPrice, int taxRatio, ProductState state)
         {
             Name = name;
@@ -77,6 +80,11 @@ namespace Marketplace.Domains.Models.ProductDomain
             }
 
             _colors.Add(color);
+        }
+
+        public void AddProductImage(string name, string contentType, string url, string extension)
+        {
+            _images.Add(new ProductImage(Id, name, contentType, url, extension));
         }
     }
 }

@@ -7,5 +7,6 @@
         SalesOrders = 2,
         Addresses = 3,
         PaymentMethods = 4,
+        Products = 5,
     }
 }

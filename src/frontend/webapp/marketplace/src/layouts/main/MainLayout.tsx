@@ -46,6 +46,7 @@ const UpdateDeliveryAddressPage = React.lazy(() => import("../../pages/main/acco
 const CreateDeliveryAddressPage = React.lazy(() => import("../../pages/main/account/addresses/CreateDeliveryAddressForm"));
 const CreateBillingAddressPage = React.lazy(() => import("../../pages/main/account/addresses/CreateBillingAddressForm"));
 const CreatePaymentMethodPage = React.lazy(() => import("../../pages/main/account/payment-methods/CreatePaymentMethodForm"));
+const ProductDetailsPage = React.lazy(() => import("../../pages/main/products/ProductDetails"));
 
 export const mainRoutes: RouteConfig = {
     path: "/",
@@ -129,6 +130,10 @@ export const mainRoutes: RouteConfig = {
                     element: <SalesOrdersPage />
                 }
             ]
+        },
+        {
+            path: "products/:productId",
+            element: <ProductDetailsPage />
         }
     ]
 }

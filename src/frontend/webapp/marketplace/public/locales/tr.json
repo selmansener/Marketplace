@@ -141,6 +141,13 @@
             "CardNameValidation": "Bu kart ismine sahip başka bir kart bulunmakta.",
             "SetAsDefault": "Varsayılan Olarak Ata"
         },
+        "ProductDetails": {
+            "ProductCode": "Ürün Kodu: {{sku}}",
+            "AskQuestion": "Satıcıya Soru Sor",
+            "TenantName": "Satıcı: {{tenantName}}",
+            "SalesPrice": "{{price}} TL",
+            "AddToBasket": "Sepete Ekle"
+        },
         "NotFound": {
             "Description1": "Üzgünüz, aradığınız sayfayı",
             "Description2": "bulamıyoruz ya da",
