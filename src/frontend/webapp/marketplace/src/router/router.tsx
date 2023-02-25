@@ -19,7 +19,7 @@ export interface RouterProps {
 }
 
 export function Router(props: RouterProps) {
-    const { routes, isPublic, currentAccountRole } = props;
+    const { routes, isPublic, currentAccountRole, environment } = props;
 
     function RenderRoutes(route: RouteConfig) {
         if (route === undefined) {
@@ -34,6 +34,10 @@ export function Router(props: RouterProps) {
             return;
         }
 
+        if (route.disabledEnvironments?.some(env => env === environment)) {
+            return;
+        }
+
         return <Route key={route.path} path={route.path} element={<Suspense fallback={route.loading ?? <Loading />}>{route.element}</Suspense>} errorElement={route.error ?? <ErrorBoundary />}>
             {route.leafNodes && route.leafNodes?.length > 0 && route.leafNodes.map(leafNode => RenderRoutes(leafNode))}
         </Route>
@@ -42,7 +46,7 @@ export function Router(props: RouterProps) {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <React.Fragment>
-                {routes.map(route => RenderRoutes(route))}
+                {routes.filter(route => !route.disabledEnvironments?.some(env => env === environment)).map(route => RenderRoutes(route))}
                 <Route path="*" element={<NotFound />} />
             </React.Fragment>
         ));

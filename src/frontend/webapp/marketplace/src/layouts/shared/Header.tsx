@@ -170,23 +170,23 @@ export function Header() {
                         justifyContent: 'flex-start',
                         flexGrow: 1,
                     }}>
-                        <SearchBar />
+                        {/* <SearchBar /> */}
                     </Box>
-                    <Box ml={2}>
+                    {/* <Box ml={2}>
                         <AuthenticationButton />
-                    </Box>
-                    <Box ml={2}>
+                    </Box> */}
+                    {/* <Box ml={2}>
                         <Button>
                             <LocalMallIcon />
                             {t("Generic.MyBasket")}
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </Container>
             <Box sx={{
                 backgroundColor: theme.palette.secondary.main
             }}>
-                <Container maxWidth={"xl"}>
+                {/* <Container maxWidth={"xl"}>
                     <Toolbar sx={{
                         display: "flex",
                         alignItems: "flex-end",
@@ -242,7 +242,7 @@ export function Header() {
                             Spor & Outdoor
                         </MenuButton>
                     </Toolbar>
-                    {/* <Box
+                    <Box
                         onMouseOver={() => setSubmenuState(true)}
                         onMouseLeave={() => closeSubmenu()}
                         display={submenuState ? "block" : "none"}
@@ -264,8 +264,8 @@ export function Header() {
                                 </Grid>
                             })}
                         </Grid>
-                    </Box> */}
-                </Container>
+                    </Box>
+                </Container> */}
             </Box>
         </AppBar>
     </React.Fragment>

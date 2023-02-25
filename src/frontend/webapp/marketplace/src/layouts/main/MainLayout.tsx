@@ -2,7 +2,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import { Container } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { RouteConfig } from "../../router/routes";
+import { Environment, RouteConfig } from "../../router/routes";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 
@@ -27,6 +27,8 @@ export default function MainLayout() {
         <Footer />
     </React.Fragment>
 }
+
+const ComingSoonPage = React.lazy(() => import("../../pages/main/coming-soon/ComingSoon"));
 
 const VerificationPage = React.lazy(() => import("../../pages/main/verification/Verification"));
 const AccountCreatedPage = React.lazy(() => import("../../pages/main/verification/AccountCreated"));
@@ -53,8 +55,14 @@ export const mainRoutes: RouteConfig = {
     element: <MainLayout />,
     leafNodes: [
         {
+            path:"",
+            element: <ComingSoonPage />,
+            disabledEnvironments: ["development"]
+        },
+        {
             path: "verification",
             element: <VerificationPage />,
+            disabledEnvironments: ["production"],
             leafNodes: [
                 {
                     path: "account-created",
@@ -72,15 +80,18 @@ export const mainRoutes: RouteConfig = {
         },
         {
             path: "",
-            element: <MainPage />
+            element: <MainPage />,
+            disabledEnvironments: ["production"],
         },
         {
             path: "search",
-            element: <SearchPage />
+            element: <SearchPage />,
+            disabledEnvironments: ["production"],
         },
         {
             path: "account",
             element: <AccountPage />,
+            disabledEnvironments: ["production"],
             isPublic: false,
             leafNodes: [
                 {
@@ -133,7 +144,8 @@ export const mainRoutes: RouteConfig = {
         },
         {
             path: "products/:productId",
-            element: <ProductDetailsPage />
+            element: <ProductDetailsPage />,
+            disabledEnvironments: ["production"],
         }
     ]
 }

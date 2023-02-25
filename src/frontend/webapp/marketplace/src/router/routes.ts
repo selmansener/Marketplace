@@ -1,12 +1,12 @@
 import React from "react";
 import { mainRoutes } from "../layouts/main/MainLayout";
 
-enum Environments {
-    Production = "production",
-    Staging = "staging",
-    Int = "int",
-    Development = "development"
-}
+export type Environment =
+    | "production"
+    | "staging"
+    | "int"
+    | "development";
+
 
 enum Roles {
     Admin = "Admin",
@@ -18,7 +18,7 @@ export interface RouteConfig {
     element: React.ReactNode;
     isPublic?: boolean;
     roles?: string[];
-    disabledEnvironments?: Environments[];
+    disabledEnvironments?: Environment[];
     leafNodes?: RouteConfig[];
     loading?: React.ReactNode;
     error?: React.ReactNode;
