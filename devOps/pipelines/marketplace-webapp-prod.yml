@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+- job:
+  displayName: WebApp Build & Deployment
+  steps:
+  - task: NodeTool@0
+    displayName: 'Nodejs Installation'
+    inputs:
+      versionSpec: '16.x'
+      checkLatest: true
+  - task: Npm@1
+    displayName: 'Install Packages'
+    inputs:
+      command: 'custom'
+      workingDir: 'src/frontend/webapp/marketplace'
+      customCommand: 'install --force'
+  - task: Npm@1
+    displayName: Build
+    inputs:
+      command: 'custom'
+      workingDir: 'src/frontend/webapp/marketplace'
+      customCommand: 'run build'
+  - task: AzureStaticWebApp@0
+    displayName: Deploy
+    inputs:
+      app_location: 'src/frontend/webapp/marketplace/build'
+      output_location: 'src/frontend/webapp/marketplace/build'
+      config_file_location: 'src/frontend/webapp/marketplace/build'
+      skip_app_build: true
+      azure_static_web_apps_api_token: '79ffa6c148b20d7b1704e9f552200f7f0e807d547aa2a7aa72d3d1c550071dfe2-e9e54b0c-b89d-4992-b05a-0dd2782a9e37003196955'
