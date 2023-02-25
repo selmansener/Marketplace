@@ -32,7 +32,11 @@ namespace Marketplace.Functions.EventHandlers.Handlers
         public ProductDataChangedHandler(IOptions<ElasticSearchOptions> elasticSearchOptions, IMediator mediator)
         {
             var credentials = new ApiKeyAuthenticationCredentials(elasticSearchOptions.Value.APIKey);
-            _elasticClient = new ElasticClient(elasticSearchOptions.Value.CloudId, credentials);
+            var uri = new Uri(elasticSearchOptions.Value.BaseUrl, UriKind.Absolute);
+            var connectionSettings = new ConnectionSettings(uri)
+                .ApiKeyAuthentication(credentials)
+                .ServerCertificateValidationCallback(CertificateValidations.AllowAll);
+            _elasticClient = new ElasticClient(connectionSettings);
             _mediator = mediator;
         }
 

@@ -2,7 +2,7 @@
 {
     public class ElasticSearchOptions
     {
-        public string CloudId { get; set; }
+        public string BaseUrl { get; set; }
 
         public string APIKey { get; set; }
     }

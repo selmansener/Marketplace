@@ -27,8 +27,8 @@ export const config: EnvConfig = {
     },
     elasticEngineConfig: {
         "engineName": "products-engine",
-        "endpointBase": "https://elastic-modilist-shared-westeu.ent.westeurope.azure.elastic-cloud.com",
-        "searchKey": "search-zna133pfd9fbdd23p244x35n",
+        "endpointBase": "http://localhost:3002",
+        "searchKey": "search-g7yf2vce5vp8ro65wzfoqpbw",
         "resultFields": [
           "barcode",
           "brand",

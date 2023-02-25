@@ -39,7 +39,7 @@ namespace Marketplace.Functions.EventHandlers
 
             builder.Services.Configure<ElasticSearchOptions>(config =>
             {
-                config.CloudId = options.ElasticSearch.CloudId;
+                config.BaseUrl = options.ElasticSearch.BaseUrl;
                 config.APIKey = options.ElasticSearch.APIKey;
             });
 
